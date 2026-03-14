@@ -7,7 +7,8 @@ def get_scout(model, mcp_tool):
         model=model,
         instruction="""
         You are the Market Scout. Take the {skill_matrix} from the Profiler.
-        Call your JobHunter tool using the user's {target_role} and {target_location}.
+        Using the provided 'target_role' and 'target_location' from the context, 
+        call the 'search_job' tool to find a matching position.
         Return the exact job description, company name, and location from the tool's output.
         """,
         tools=[mcp_tool],
