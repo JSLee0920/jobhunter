@@ -27,11 +27,11 @@ app.add_middleware(
 llm_model = Gemini(model="gemini-2.5-flash")
 
 job_mcp_tool = McpTool(
-    name="JobBoardOrchestrator", command="uv", args=["run", "tools/job_mcp_server.py"]
+    name="JobHunter", command="uv", args=["run", "tools/job_mcp_server.py"]
 )
 
 career_swarm = SequentialAgent(
-    name="CareerSyncPipeline",
+    name="JobHunterPipeline",
     sub_agents=[
         get_profiler(llm_model),
         get_scout(llm_model, job_mcp_tool),
@@ -71,7 +71,7 @@ async def execute_swarm(
     user_id = f"user_{str(uuid.uuid4())[:8]}"
 
     runner = Runner(
-        agent=career_swarm, app_name="CareerSync", session_service=session_service
+        agent=career_swarm, app_name="JobHunter", session_service=session_service
     )
 
     print("[Profiler] Thinking: Extracting matrix from local PDF...")
