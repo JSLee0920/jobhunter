@@ -149,7 +149,3 @@ gemini-nexus-hackathon/
 ├── .env.example
 └── README.md
 ```
-
-## License
-
-MIT
